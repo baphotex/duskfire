@@ -14,6 +14,4 @@ c_vecs = lambda X:np.array([X[:,i].reshape(-1,1) for i in range(0,len(X.T))])
 getV = lambda X: np.concatenate(normalize(get_vecs(X)),axis=1)
 
 _formU = lambda i,v: (np.arange(len(X))==i).astype(int).reshape(-1,1)*np.linalg.norm(v) 
-getU = lambda X: np.concatenate(
-    [_formU(i,v) for (i,v) in enumerate(c_vecs(X))],axis=1
-)
+getU = lambda X: np.concatenate([_formU(i,v) for (i,v) in enumerate(get_vecs(X))],axis=1)
