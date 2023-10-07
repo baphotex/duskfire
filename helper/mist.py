@@ -37,6 +37,7 @@ def plot_as_line(a,b, just=False):
 
     ax.set(xlabel='$x_1$', ylabel='$x_2$',
         title='$x_2 = f(x_1)$.')
+    ax.set_xlim(np.min(a),np.max(b)) 
     ax.set_ylim(ax.get_xlim()) if just else None
 
     ax.grid(True, which='both')
