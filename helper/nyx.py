@@ -15,4 +15,4 @@ cols = lambda X:np.array([X[:,i].reshape(-1,1) for i in range(0,len(X.T))])
 
 getV = lambda X: cat(normalize(cols(X)),axis=1)
 _formU = lambda i,v: (np.arange(len(X))==i).astype(int).reshape(-1,1)*norm(v) 
-getU = lambda X: cat([_formU(i,v) for (i,v) in enumerate(gols(X))],axis=1)
+getU = lambda X: cat([_formU(i,v) for (i,v) in enumerate(cols(X))],axis=1)
