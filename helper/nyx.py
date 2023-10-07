@@ -6,20 +6,17 @@ import numpy as np
 
 least_squares = lambda X,y: np.linalg.inv(X.T@X)@(X.T@y) 
 
-get_V = lambda X: np.concatenate(
-    [v/np.linalg.norm(v) for v in\
-    [X[:,i].reshape(-1,1) for i in range(0,len(X.T))]],
-    axis=1
-)
-
-get_U = lambda X: np.concatenate(
-    [(np.arange(len(X))==i).astype(int).reshape(-1,1)*np.linalg.norm(v)  for (i,v) in\
-    enumerate([X[:,i].reshape(-1,1) for i in range(0,len(X.T))])],
-    axis=1
-)
+ridge_regress = lambda X,y,c: np.linalg.inv(X.T@X + c*np.identity(len(X.T)))@(X.T@y)
 
 normalize = lambda x: x/np.linalg.norm(x)
+c_vecs = lambda X:[X[:,i].reshape(-1,1) for i in range(0,len(X.T))] 
 
-get_c_vecs = lambda X:[X[:,i].reshape(-1,1) for i in range(0,len(X.T))] 
+getV = lambda X: np.concatenate(
+    [normalize(v) for v in\
+    c_vecs(X)], axis=1
+)
 
-vform = lambda vecs: np.concatenate([normalize(v) for v in vecs],axis=1)
+_formU = lambda i,v: (np.arange(len(X))==i).astype(int).reshape(-1,1)*np.linalg.norm(v) 
+getU = lambda X: np.concatenate(
+    [_formU(i,v) for (i,v) in enumerate(c_vecs(X))],axis=1
+)
