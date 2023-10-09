@@ -10,6 +10,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 import sklearn
 from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression
 
 def lm(X,y):
     """linear regression
