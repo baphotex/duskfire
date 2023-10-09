@@ -11,5 +11,4 @@ sys.path.insert(1,'./duskfire/helper')
 from nyx import *
 from mist import *
 from flame import *
-
 from xiris import * 
